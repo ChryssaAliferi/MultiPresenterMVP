@@ -16,5 +16,4 @@ public abstract class MainPresenter extends BaseFlow {
     public abstract void onMapReady(GoogleMap map);
 
     public abstract void initialize();
-
 }

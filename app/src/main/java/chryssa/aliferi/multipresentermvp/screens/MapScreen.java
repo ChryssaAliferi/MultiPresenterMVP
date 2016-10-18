@@ -15,4 +15,6 @@ public interface MapScreen extends BaseScreen {
     void showCallingScreen();
 
     void animateButton(final boolean showView, int delay, int duration);
+    void moveToLocation(double lat, double lng);
+
 }

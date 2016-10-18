@@ -6,6 +6,8 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -18,6 +20,8 @@ import android.view.MenuItem;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.FrameLayout;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -34,6 +38,7 @@ import chryssa.aliferi.multipresentermvp.screens.MapScreen;
 import chryssa.aliferi.multipresentermvp.screens.MenuScreen;
 
 public class MainActivity extends AppCompatActivity implements MenuScreen, MapScreen, CallingScreen, OnMapReadyCallback, View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
+
 
     private FrameLayout calling_screen;
     private Toolbar toolbar;
@@ -53,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements MenuScreen, MapSc
         initializeMapFlow();
         initializeMap();
         initializeMenuFlow();
+
     }
 
     private void initializeViews() {
@@ -138,6 +144,11 @@ public class MainActivity extends AppCompatActivity implements MenuScreen, MapSc
         } else {
             animateHideButton(delay, duration, continue_button);
         }
+    }
+
+    @Override
+    public void moveToLocation(double lat, double lng) {
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lng), 16));
     }
 
     @Override
